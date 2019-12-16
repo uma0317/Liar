@@ -35,7 +35,8 @@ public class Main extends Application {
         root.getChildren().add(btn);
         
         Scene scene = new Scene(root, 300, 250);
-        
+        primaryStage.setWidth(800);
+        primaryStage.setHeight(600);
         primaryStage.setTitle("Hello World!");
         primaryStage.setScene(scene);
         primaryStage.show();
