@@ -10,5 +10,16 @@ package liar;
  * @author f1610801320
  */
 public class Card {
-    
+    int number;
+    String pattern;
+    public void Card(int CardNumber,String CardPattern){
+        number = CardNumber;
+        pattern = CardPattern;
+    }
+    public int getNumber(){
+        return number;
+    }
+    public String getPattern(){
+        return pattern;
+    }
 }
