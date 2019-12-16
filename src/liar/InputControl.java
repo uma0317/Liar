@@ -13,7 +13,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import java.util.*;
 public class InputControl {
-    private int Playernum;
+    private int playerNum;
     private Card card;
     private Card[] initCards=new Card[52];
     private Card[] garbageCards;
@@ -46,6 +46,7 @@ public class InputControl {
     }
     
     public void setGarbageCards(Card[] cards){
+        garbageCards = cards;
     }
     
     public void clearFieldCards(){
@@ -55,9 +56,14 @@ public class InputControl {
     }
     
     public void countThemeCard(){
+        themeCard++;
+        if(themeCard>13)
+               themeCard=1;
     }
     
     public void changeCurrentPlayer(){
+        count++;
+        currentPlayer = players.get(count%playerNum);
     }
     
     //カード配布
@@ -68,6 +74,14 @@ public class InputControl {
     }
     
     private void cardShuffle(){
+        int SHUFFLE_LENGTH = 52;
+        int i = SHUFFLE_LENGTH;
+        do{
+            int j= (int)Math.random()*(i+1);
+            Card tmp = initCards[i];
+            initCards[i] = initCards[j];
+            initCards[j] = tmp;
+        }while(i>0);
     }
 
     //ダウト選択
