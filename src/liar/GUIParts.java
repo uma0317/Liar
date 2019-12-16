@@ -11,6 +11,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 
 /**
  *
@@ -50,7 +52,8 @@ public class GUIParts {
     Label doubtTitleLabel, doubtResultLabel, messageLabel;
     
     protected void initButton() {
-        
+        gameStartBtn = new Button("ゲーム開始");
+        gameStartBtn.setStyle("-fx-background-color: #fo8o84; -fx-text-fill: #FFFFFF");
     }
     
     protected void initComboBox() {

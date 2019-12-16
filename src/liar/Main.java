@@ -34,11 +34,15 @@ public class Main extends Application {
         StackPane root = new StackPane();
         root.getChildren().add(btn);
         
+        Stage secondaryStage = new Stage();
+        
         Scene scene = new Scene(root, 300, 250);
         primaryStage.setWidth(800);
         primaryStage.setHeight(600);
-        primaryStage.setTitle("Hello World!");
+        SceneControl sceneControl = new SceneControl(primaryStage, secondaryStage);
+        
         primaryStage.setScene(scene);
+        secondaryStage.setScene(SceneControl.doubtPlayerCheckScene);
         primaryStage.show();
     }
 
