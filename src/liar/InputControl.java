@@ -24,20 +24,24 @@ public class InputControl {
     //private ArrayList<ArrayList<Card[]>> players=new ArrayList<ArrayList<Card[]>>();//playerを格納
     private ArrayList<Player> players=new ArrayList<Player>();//playerを格納
     private ArrayList<Card> fieldCards=new ArrayList<Card>();//山カードデータ
-    
+    private ArrayList<Card[]> onePlayerCardList = new ArrayList<Card[]>();//「新規」一人当たりのカード格納
             
             
             
     public Player getPlayer(int playerID){//プレイヤーIDを取得
+        return players.get(playerID);
     }
     
     public Player getCurrentPlayer(){//currentPlayerの取得
+        return currentPlayer;
     }
     
     public Player getDoubtPlayer(){//doubtPlayerの取得
+        return doubtPlayer;
     }
     
     public  int getThemeCard(){//themeCardの取得
+        return themeCard;
     }
     
     public ArrayList<Card> getFieldCards(){//山カードデータを取得
@@ -58,6 +62,14 @@ public class InputControl {
     }
     
     public int[] divideHandCard(){//Playerのカードデータをトランプ１から13それぞれの枚数をカウントして長さ13の配列で返す
+        int divideCard[] = new int[13];
+        int work = 0;
+        cardData = currentPlayer.getCardData();
+        for(int number = 0;number<divideCard.length;number++){
+            if((number+1)==cardData[work].getNumber())
+                divideCard[number]++;
+        }
+        return divideCard;
     }
     
     public void countThemeCard(){//themeCardの値を1増やす。14以上になるときは1にする
@@ -70,16 +82,24 @@ public class InputControl {
         count++;
         currentPlayer = players.get(count%playerNum);
     }
-    
+    //--------------------------↓カード配布---------------------------------------------------------
     
     private void createPlayer(){//プレイヤーのインスタンスをプレイヤー数生成し、playersに格納する
+        for(int n=0;n<playerNum;n++){
+            Player player = new Player();
+            players.add(player);
+        }
     }
     
     private void cardDistribute(){//各プレイヤーにカードを配布する
         int onePlayerCard = 52/playerNum;//一人当たりの手札の枚数
         int surplusCard = 52%playerNum;//余りのカード
-        for(int n=1;n<playerNum;n++){
-            players.set(n, currentPlayer);
+       
+        for(int n=0;n<playerNum;n++){
+            for(int i=n*onePlayerCard;i<playerNum*onePlayerCard;i++){//0~12、13~25、26~38、39~51
+                onePlayerCardList.set(i,initCards[i]);
+                Player.setCardData(onePlayerCardList);
+            }
         }
     }
     
@@ -94,10 +114,13 @@ public class InputControl {
             i++;
         }while(i>0);
     }
-
+//--------------------------↓ダウト選択--------------------------------------------------------------
     
     public void setDoubtPlayer(Player player){//doubtPlayerをセットする
+        doubtPlayer = player;
     }
+    
+    //--------------------------↓ダウト結果--------------------------------------------------------------
     
    
     public void cardProcess(boolean flag){//ダウト判定によってcurrentPlayerかdoubtPlayerにfieldCardsを渡す
@@ -112,12 +135,23 @@ public class InputControl {
     }
     
     public boolean doubtCheck(){//ダウトの正誤判定を行う。garbageCardsとthemeCardを比べて正しくないときはtrueを返す。
-        return true;
+        Boolean flag = false;
+        for(int n=0;n<garbageCards.length;n++){
+            Card card = garbageCards[n];
+            if(themeCard!=card.getNumber())
+              flag = true;     
+        }
+        return flag;
     }
     
     public boolean winnerCheck(){//currentPlayerの手札が0枚の時、trueを返す
-        return true;
+        cardData =currentPlayer.getCardData();
+        if(cardData.length==0)
+            return true;
+        else 
+            return false;
     }
+    
 
 
 
