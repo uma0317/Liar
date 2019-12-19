@@ -21,59 +21,69 @@ public class InputControl {
     private int count;
     private Player currentPlayer;
     private Player doubtPlayer;
-    private ArrayList<Player> players=new ArrayList<Player>();
-    private ArrayList<Card> fieldCards=new ArrayList<Card>();
+    //private ArrayList<ArrayList<Card[]>> players=new ArrayList<ArrayList<Card[]>>();//playerを格納
+    private ArrayList<Player> players=new ArrayList<Player>();//playerを格納
+    private ArrayList<Card> fieldCards=new ArrayList<Card>();//山カードデータ
     
             
             
             
-    public Player getPlayer(int playerID){
+    public Player getPlayer(int playerID){//プレイヤーIDを取得
     }
     
-    public Player getCurrentPlayer(){
+    public Player getCurrentPlayer(){//currentPlayerの取得
     }
     
-    public Player getDoubtPlayer(){
+    public Player getDoubtPlayer(){//doubtPlayerの取得
     }
     
-    public  int getThemeCard(){
+    public  int getThemeCard(){//themeCardの取得
     }
     
-    public ArrayList<Card> getFieldCards(){
-    
+    public ArrayList<Card> getFieldCards(){//山カードデータを取得
+        return fieldCards; 
     }
-    public void setFieldCards(Card cards[]){
+    public void setFieldCards(Card cards[]){//山カードデータのセット
+        for(int n=0;n<cards.length;n++){
+            fieldCards.add(cards[n]);
+        }
     }
     
-    public void setGarbageCards(Card[] cards){
+    public void setGarbageCards(Card[] cards){//garbageCardsにセット
         garbageCards = cards;
     }
     
-    public void clearFieldCards(){
+    public void clearFieldCards(){//山カードデータをすべて削除
+        fieldCards.clear();
     }
     
-    public int[] divideHandCard(){
+    public int[] divideHandCard(){//Playerのカードデータをトランプ１から13それぞれの枚数をカウントして長さ13の配列で返す
     }
     
-    public void countThemeCard(){
+    public void countThemeCard(){//themeCardの値を1増やす。14以上になるときは1にする
         themeCard++;
         if(themeCard>13)
                themeCard=1;
     }
     
-    public void changeCurrentPlayer(){
+    public void changeCurrentPlayer(){//currentPlayerにplayersから現在のPlayerを取得し代入する
         count++;
         currentPlayer = players.get(count%playerNum);
     }
     
-    //カード配布
-    private void createPlayer(){
+    
+    private void createPlayer(){//プレイヤーのインスタンスをプレイヤー数生成し、playersに格納する
     }
     
-    private void cardDistribute(){
+    private void cardDistribute(){//各プレイヤーにカードを配布する
+        int onePlayerCard = 52/playerNum;//一人当たりの手札の枚数
+        int surplusCard = 52%playerNum;//余りのカード
+        for(int n=1;n<playerNum;n++){
+            players.set(n, currentPlayer);
+        }
     }
     
-    private void cardShuffle(){
+    private void cardShuffle(){//randomを用いてcardをシャッフルする
         int SHUFFLE_LENGTH = 52;
         int i = SHUFFLE_LENGTH;
         do{
@@ -81,22 +91,31 @@ public class InputControl {
             Card tmp = initCards[i];
             initCards[i] = initCards[j];
             initCards[j] = tmp;
+            i++;
         }while(i>0);
     }
 
-    //ダウト選択
-    public void setDoubtPlayer(Player player){
+    
+    public void setDoubtPlayer(Player player){//doubtPlayerをセットする
     }
     
-    //ダウト結果
-    public void cardProcess(boolean flag){
+   
+    public void cardProcess(boolean flag){//ダウト判定によってcurrentPlayerかdoubtPlayerにfieldCardsを渡す
+        if(flag){
+            currentPlayer.setCardData(getFieldCards());
+            doubtPlayer.deleteCardData(getFieldCards());
+        }
+        else{
+            doubtPlayer.setCardData(getFieldCards());
+            currentPlayer.deleteCardData(getFieldCards());
+        }
     }
     
-    public boolean doubtCheck(){
+    public boolean doubtCheck(){//ダウトの正誤判定を行う。garbageCardsとthemeCardを比べて正しくないときはtrueを返す。
         return true;
     }
     
-    public boolean winnerCheck(){
+    public boolean winnerCheck(){//currentPlayerの手札が0枚の時、trueを返す
         return true;
     }
 
