@@ -12,32 +12,30 @@ package liar;
 public class Player {
     imageView[] iconimage;
     ArrayList<Card> cardData;
-    public void deleteCardData(Card cards[]){
-        n=0;
-        m=0;
-        while(n<cards.length){
+    public void deleteCardData(Card[] cards){
+        for(int n=0;n<cards.length;n++){
             Card card = cards[n];
-            while(m<cardData.length){
-                if(Card.getNumber() == cardData[m].getNumber()){
-                    
+            for(int m=0;m<cardData.length;m++){
+                Card cd = cardData.get(m);
+                if(card.getNumber() == cd.getNumber()){
+                    cardData.remove(m);
                 }
             }
         }
             
     }
-    public void setCardData(){
-        n=0;
-        while(n<cards.length){
-            cardData.add(cards[n])
+    public void setCardData(Card[] cards){
+        for(int n=0;n<cards.length;n++){
+            cardData.add(cards[n]);
         }
     }
     public ArrayList<Card> getCardData(){
         return cardData;
     }
-    public imageView[] getIconImage(int expression){
+    public imageView getIconImage(int expression){
         return iconImage[expression];
     }
-    public void Player(String ){
+    public void Player(String playerImage){
         
     }
 }
