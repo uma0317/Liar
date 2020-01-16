@@ -5,17 +5,20 @@
  */
 package liar;
 
+import java.util.ArrayList;
+import javafx.scene.image.ImageView;
 /**
  *
  * @author f1610801320
  */
 public class Player {
-    imageView[] iconimage;
+    ImageView[] iconimage;
     ArrayList<Card> cardData;
+    
     public void deleteCardData(Card[] cards){
         for(int n=0;n<cards.length;n++){
             Card card = cards[n];
-            for(int m=0;m<cardData.length;m++){
+            for(int m=0; m < cardData.size();m++){
                 Card cd = cardData.get(m);
                 if(card.getNumber() == cd.getNumber()){
                     cardData.remove(m);
@@ -32,8 +35,8 @@ public class Player {
     public ArrayList<Card> getCardData(){
         return cardData;
     }
-    public imageView getIconImage(int expression){
-        return iconImage[expression];
+    public ImageView getIconImage(int expression){
+        return iconimage[expression];
     }
     public void Player(String playerImage){
         
