@@ -125,12 +125,12 @@ public class InputControl {
    
     public void cardProcess(boolean flag){//ダウト判定によってcurrentPlayerかdoubtPlayerにfieldCardsを渡す
         if(flag){
-            currentPlayer.setCardData(getFieldCards());
-            doubtPlayer.deleteCardData(getFieldCards());
+            currentPlayer.setCardData(getFieldCards().toArray(new Card[getFieldCards().size()]));
+            doubtPlayer.deleteCardData(getFieldCards().toArray(new Card[getFieldCards().size()]));
         }
         else{
-            doubtPlayer.setCardData(getFieldCards());
-            currentPlayer.deleteCardData(getFieldCards());
+            doubtPlayer.setCardData(getFieldCards().toArray(new Card[getFieldCards().size()]));
+            currentPlayer.deleteCardData(getFieldCards().toArray(new Card[getFieldCards().size()]));
         }
     }
     
@@ -145,8 +145,8 @@ public class InputControl {
     }
     
     public boolean winnerCheck(){//currentPlayerの手札が0枚の時、trueを返す
-        cardData =currentPlayer.getCardData();
-        if(cardData.length==0)
+        ArrayList<Card>cardData =currentPlayer.getCardData();
+        if(cardData.isEmpty())
             return true;
         else 
             return false;
