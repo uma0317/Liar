@@ -64,9 +64,9 @@ public class InputControl {
     public int[] divideHandCard(){//Playerのカードデータをトランプ１から13それぞれの枚数をカウントして長さ13の配列で返す
         int divideCard[] = new int[13];
         int work = 0;
-        cardData = currentPlayer.getCardData();
+        ArrayList<Card> cardData = currentPlayer.getCardData();
         for(int number = 0;number<divideCard.length;number++){
-            if((number+1)==cardData[work].getNumber())
+            if((number+1)==cardData.get(work).getNumber())
                 divideCard[number]++;
         }
         return divideCard;
@@ -98,7 +98,7 @@ public class InputControl {
         for(int n=0;n<playerNum;n++){
             for(int i=n*onePlayerCard;i<(n+1)*onePlayerCard;i++){//0~12、13~25、26~38、39~51
                 onePlayerCardList.set(i,initCards);
-                Player.setCardData(onePlayerCardList);
+                players.get(n).setCardData(onePlayerCardList.get(n));
             }
         }
     }
@@ -125,12 +125,12 @@ public class InputControl {
    
     public void cardProcess(boolean flag){//ダウト判定によってcurrentPlayerかdoubtPlayerにfieldCardsを渡す
         if(flag){
-            currentPlayer.setCardData(getFieldCards());
-            doubtPlayer.deleteCardData(getFieldCards());
+            currentPlayer.setCardData(getFieldCards().toArray(new Card[getFieldCards().size()]));
+            doubtPlayer.deleteCardData(getFieldCards().toArray(new Card[getFieldCards().size()]));
         }
         else{
-            doubtPlayer.setCardData(getFieldCards());
-            currentPlayer.deleteCardData(getFieldCards());
+            doubtPlayer.setCardData(getFieldCards().toArray(new Card[getFieldCards().size()]));
+            currentPlayer.deleteCardData(getFieldCards().toArray(new Card[getFieldCards().size()]));
         }
     }
     
@@ -145,8 +145,8 @@ public class InputControl {
     }
     
     public boolean winnerCheck(){//currentPlayerの手札が0枚の時、trueを返す
-        cardData =currentPlayer.getCardData();
-        if(cardData.length==0)
+        ArrayList<Card>cardData =currentPlayer.getCardData();
+        if(cardData.isEmpty())
             return true;
         else 
             return false;
