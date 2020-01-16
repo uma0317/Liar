@@ -15,7 +15,7 @@ import java.util.*;
 public class InputControl {
     private int playerNum;
     private Card card;
-    private Card[] initCards=new Card[52];
+    private Card[] initCards = new Card[52];
     private Card[] garbageCards;
     private int themeCard;
     private int count;
@@ -26,7 +26,33 @@ public class InputControl {
     private ArrayList<Card> fieldCards=new ArrayList<Card>();//山カードデータ
     private ArrayList<Card[]> onePlayerCardList = new ArrayList<Card[]>();//「新規」一人当たりのカード格納
             
-            
+    InputControl(int playerNum) {
+        this.playerNum = playerNum;
+        for(int i = 1; i <= 4; i++) {
+            for(int n = 1; n <= 13; n++) {
+                Card card;
+                int num = i * n;
+                String pattern = null;
+                switch(i) {
+                    case 1:
+                        pattern = "Heart";
+                        break;
+                    case 2:
+                        pattern = "Diamond";
+                        break;
+                    case 3:
+                        pattern = "Spade";
+                        break;
+                    case 4:
+                        pattern = "Club";
+                        break;
+                }
+                card = new Card(num, pattern);
+            }
+        }
+        cardShuffle();
+        
+    }
             
     public Player getPlayer(int playerID){//プレイヤーIDを取得
         return players.get(playerID);

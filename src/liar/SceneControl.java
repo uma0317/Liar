@@ -54,6 +54,7 @@ public class SceneControl extends GUIParts{
             
             @Override
             public void handle(ActionEvent event) {
+                input = new InputControl(inputPlayerNumForm.getValue());
                 transitionScene(primaryStage, cardChoiseScene);
             }
         });

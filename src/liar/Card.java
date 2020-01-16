@@ -12,7 +12,7 @@ package liar;
 public class Card {
     int number;
     String pattern;
-    public void Card(int CardNumber,String CardPattern){
+    public Card(int CardNumber,String CardPattern){
         number = CardNumber;
         pattern = CardPattern;
     }
