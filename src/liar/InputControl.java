@@ -98,7 +98,7 @@ public class InputControl {
         for(int n=0;n<playerNum;n++){
             for(int i=n*onePlayerCard;i<(n+1)*onePlayerCard;i++){//0~12、13~25、26~38、39~51
                 onePlayerCardList.set(i,initCards);
-                Player.setCardData(onePlayerCardList);
+                players.get(n).setCardData(onePlayerCardList.get(n));
             }
         }
     }
