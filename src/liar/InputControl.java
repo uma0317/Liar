@@ -96,8 +96,8 @@ public class InputControl {
         int surplusCard = 52%playerNum;//余りのカード
        
         for(int n=0;n<playerNum;n++){
-            for(int i=n*onePlayerCard;i<playerNum*onePlayerCard;i++){//0~12、13~25、26~38、39~51
-                onePlayerCardList.set(i,initCards[i]);
+            for(int i=n*onePlayerCard;i<(n+1)*onePlayerCard;i++){//0~12、13~25、26~38、39~51
+                onePlayerCardList.set(i,initCards);
                 Player.setCardData(onePlayerCardList);
             }
         }
