@@ -41,7 +41,7 @@ public class Main extends Application {
         primaryStage.setHeight(600);
         SceneControl sceneControl = new SceneControl(primaryStage, secondaryStage);
         
-        primaryStage.setScene(scene);
+        primaryStage.setScene(SceneControl.gameStartScene);
         secondaryStage.setScene(SceneControl.doubtPlayerCheckScene);
         primaryStage.show();
     }

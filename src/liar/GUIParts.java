@@ -6,6 +6,8 @@
 package liar;
 
 import java.util.ArrayList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -13,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.text.Font;
 
 /**
  *
@@ -53,11 +56,13 @@ public class GUIParts {
     
     protected void initButton() {
         gameStartBtn = new Button("ゲーム開始");
-        gameStartBtn.setStyle("-fx-background-color: #fo8o84; -fx-text-fill: #FFFFFF");
+        gameStartBtn.setStyle("-fx-background-color: #f08084; -fx-text-fill: #FFFFFF");
+
     }
     
     protected void initComboBox() {
-        
+        inputPlayerNumForm = new ComboBox<Integer>();
+        inputPlayerNumForm.getItems().addAll(3, 4, 5, 6, 7, 8);
     }
     
     protected void initImage() {
@@ -69,7 +74,12 @@ public class GUIParts {
     }
     
     protected void initLabel() {
-        
+        playerFormMessageLabel = new Label("プレイヤー数");
+        titleLabel = new Label("だうと");
+        titleLabel.setFont(new Font(40));
+
+        subTitleLabel = new Label("-ライアーゲーム予選-");
+        subTitleLabel.setFont(new Font(20));
     }
     
     protected void GUIParts() {

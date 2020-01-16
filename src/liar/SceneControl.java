@@ -27,14 +27,14 @@ public class SceneControl extends GUIParts{
         initLabel();
         initImageView();
         
-        setGameEndScene(primaryStage);
+//        setGameEndScene(primaryStage);
         setGameStartScene(primaryStage);
-        setPlayerDispScene(primaryStage);
+//        setPlayerDispScene(primaryStage);
         setCardChoiseScene(primaryStage);
-        setDoubtCheckScene(primaryStage);
+//        setDoubtCheckScene(primaryStage);
         setDoubtPlayerCheckScene(secondaryStage);
-        setDoubtResultScene(primaryStage);
-        transitionScene(primaryStage, gameStartScene);
+//        setDoubtResultScene(primaryStage);
+//        transitionScene(primaryStage, gameStartScene);
     }
     
     static void transitionScene(Stage stage, Scene changeScene) {
@@ -42,22 +42,25 @@ public class SceneControl extends GUIParts{
         stage.show();
     }
     
-    private void setGameStartScene(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+    private void setGameStartScene(Stage primaryStage) {      
+        StackPane pane = new StackPane();
+
+        titleLabel.setTranslateY(-220);
+        subTitleLabel.setTranslateY(-180);
+        playerFormMessageLabel.setTranslateX(-30);
+        inputPlayerNumForm.setTranslateX(30);
+        gameStartBtn.setTranslateY(150);
+        gameStartBtn.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+                transitionScene(primaryStage, cardChoiseScene);
             }
         });
+        pane.getChildren().addAll(gameStartBtn, inputPlayerNumForm, playerFormMessageLabel, titleLabel, subTitleLabel);
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Stage secondaryStage = new Stage();
-        
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(pane, 300, 250);
+        gameStartScene = scene;
     }
     
     private void setGameEndScene(Stage primaryStage) {
@@ -69,15 +72,54 @@ public class SceneControl extends GUIParts{
     }
     
     private void setCardChoiseScene(Stage primaryStage) {
+        Button btn = new Button();
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("カードチョイス");
+            }
+        });
         
+        StackPane pane = new StackPane();
+        pane.getChildren().add(btn);
+        
+        Scene scene = new Scene(pane, 300, 250);
+        cardChoiseScene = scene;
     }
     
     private void setDoubtCheckScene(Stage primaryStage) {
+        Button btn = new Button();
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("ゲーム開始");
+            }
+        });
         
+        StackPane pane = new StackPane();
+        pane.getChildren().add(btn);
+        
+        Scene scene = new Scene(pane, 300, 250);
+        doubtCheckScene = scene;
     }
     
     private void setDoubtPlayerCheckScene(Stage secondaryStage) {
+                Button btn = new Button();
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("ゲーム開始");
+            }
+        });
         
+        StackPane pane = new StackPane();
+        pane.getChildren().add(btn);
+        
+        Scene scene = new Scene(pane, 300, 250);
+        doubtPlayerCheckScene = scene;
     }
     
     private void setDoubtResultScene(Stage primaryStage) {
