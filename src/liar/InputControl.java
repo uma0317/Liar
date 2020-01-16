@@ -64,9 +64,9 @@ public class InputControl {
     public int[] divideHandCard(){//Playerのカードデータをトランプ１から13それぞれの枚数をカウントして長さ13の配列で返す
         int divideCard[] = new int[13];
         int work = 0;
-        cardData = currentPlayer.getCardData();
+        ArrayList<Card> cardData = currentPlayer.getCardData();
         for(int number = 0;number<divideCard.length;number++){
-            if((number+1)==cardData[work].getNumber())
+            if((number+1)==cardData.get(work).getNumber())
                 divideCard[number]++;
         }
         return divideCard;
