@@ -7,7 +7,7 @@ package liar;
 
 /**
  *
- * @author f1610801320
+ * @author f1712200261
  */
 public class CountDown {
     

@@ -7,12 +7,13 @@ package liar;
 
 /**
  *
- * @author f1610801320
+ * @author f1712200261
  */
 import javafx.application.Application;
 import javafx.stage.Stage;
 import java.util.*;
 public class InputControl {
+    private int garbageCard;//追加
     private int playerNum;
     private Card card;
     private Card[] initCards=new Card[52];
@@ -138,12 +139,16 @@ public class InputControl {
         Boolean flag = false;
         for(int n=0;n<garbageCards.length;n++){
             Card card = garbageCards[n];
-            if(themeCard!=card.getNumber())
+            garbageCard = card.getNumber();//追加
+            if(themeCard!=garbageCard)//if(themeCard!=card.getNumber())
               flag = true;     
         }
         return flag;
     }
     
+    public int getGarbageCard(){//追加
+        return garbageCard;
+    }
     public boolean winnerCheck(){//currentPlayerの手札が0枚の時、trueを返す
         ArrayList<Card>cardData =currentPlayer.getCardData();
         if(cardData.isEmpty())

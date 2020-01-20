@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author f1610801320
+ * @author f1712200261
  */
 public class SceneControl extends GUIParts{
     private InputControl input;
@@ -123,6 +123,21 @@ public class SceneControl extends GUIParts{
     }
     
     private void setDoubtResultScene(Stage primaryStage) {
+        InputControl CPlayer = new InputControl();
+        InputControl DPlayer = new InputControl();
+        Player CurrentPlayer = CPlayer.getCurrentPlayer();
+        Player DoubtPlayer = DPlayer.getDoubtPlayer();
         
+        boolean judge = new InputControl().doubtCheck();
+        int ThemeCard = new InputControl().getThemeCard();
+        int GarbageCard = new InputControl().getGarbageCard();
+        this.setDoubtTitleLabel(judge);
+        this.setDoubtResultLabel(judge, ThemeCard, GarbageCard);
+        this.setMessageLabel(judge);
+        
+        StackPane pane = new StackPane();
+        
+        doubtTitleLabel.setTranslateY(-220);
+        doubtResultLabel.setTranslateY(-180);
     }
 }

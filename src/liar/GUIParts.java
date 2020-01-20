@@ -16,10 +16,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.text.Font;
+import javafx.scene.paint.Color;
 
 /**
  *
- * @author f1610801320
+ * @author f1712200261
  */
 public class GUIParts {
     Image[][] iconImage;
@@ -102,16 +103,28 @@ public class GUIParts {
         
     }
     
-    protected static void setDoubtTitleLabel(boolean judge) {
-        
+    protected void setDoubtTitleLabel(boolean judge) {
+        if(judge == true){
+            doubtTitleLabel = new Label("-ダウト成功-");
+            doubtTitleLabel.setTextFill(Color.rgb(38,168,38));
+        }else{
+            doubtTitleLabel = new Label("-ダウト失敗-");
+            doubtTitleLabel.setTextFill(Color.rgb(251,89,74));
+        }
     }
 
-    protected static void setDoubtResultLabel(boolean judge, int theme, int garbage) {
-        
+    protected void setDoubtResultLabel(boolean judge, int theme, int garbage) {
+        if(judge == true){
+            doubtResultLabel = new Label(theme + "ではなく" + garbage + "だった");
+        }
     }
     
-    protected static void setMessageLabel(boolean judge) {
-        
+    protected void setMessageLabel(boolean judge) {
+        if(judge == true){
+            messageLabel = new Label("は嘘を見破った！");
+        }else{
+            messageLabel = new Label("は人を疑いすぎだ！");
+        }
     }
     
     protected static void setCurrentNumberOfLabel(int cardDataNum) {
