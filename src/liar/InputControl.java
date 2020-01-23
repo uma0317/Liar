@@ -15,7 +15,7 @@ import java.util.*;
 public class InputControl {
     private int playerNum;
     private Card card;
-    private Card[] initCards=new Card[52];
+    private Card[] initCards = new Card[52];
     private Card[] garbageCards;
     private int themeCard;
     private int count;
@@ -26,7 +26,37 @@ public class InputControl {
     private ArrayList<Card> fieldCards=new ArrayList<Card>();//山カードデータ
     private ArrayList<Card[]> onePlayerCardList = new ArrayList<Card[]>();//「新規」一人当たりのカード格納
             
-            
+    InputControl(int playerNum) {
+        this.playerNum = playerNum;
+        for(int i = 0; i < 4; i++) {
+            for(int n = 0; n < 13; n++) {
+                Card card;
+                String pattern = null;
+                switch(i) {
+                    case 0:
+                        pattern = "Heart";
+                        break;
+                    case 1:
+                        pattern = "Diamond";
+                        break;
+                    case 2:
+                        pattern = "Spade";
+                        break;
+                    case 3:
+                        pattern = "Club";
+                        break;
+                    default:
+                        System.out.println("out");
+                }
+                card = new Card(n + 1, pattern);
+                initCards[n + 13 * i] = card;
+            }
+        }
+        cardShuffle();
+        createPlayer(playerNum);
+        cardDistribute(playerNum);
+
+    }
             
     public Player getPlayer(int playerID){//プレイヤーIDを取得
         return players.get(playerID);
@@ -65,10 +95,19 @@ public class InputControl {
         int divideCard[] = new int[13];
         int work = 0;
         ArrayList<Card> cardData = currentPlayer.getCardData();
-        for(int number = 0;number<divideCard.length;number++){
-            if((number+1)==cardData.get(work).getNumber())
-                divideCard[number]++;
+
+        
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < cardData.size(); j++) {
+                if((i + 1) == cardData.get(j).getNumber())
+                    divideCard[i]++;
+            }
         }
+        
+//        for(int number = 0; number < divideCard.length; number++){
+//            System.out.println((number+1) + ": " + cardData.get(number).getNumber());
+//        }
+//        System.out.println(Arrays.toString(divideCard));
         return divideCard;
     }
     
@@ -81,38 +120,41 @@ public class InputControl {
     public void changeCurrentPlayer(){//currentPlayerにplayersから現在のPlayerを取得し代入する
         count++;
         currentPlayer = players.get(count%playerNum);
+//        GUIParts.currentPlayerView = currentPlayer.getIconImage(playerNum);
     }
     //--------------------------↓カード配布---------------------------------------------------------
     
-    private void createPlayer(){//プレイヤーのインスタンスをプレイヤー数生成し、playersに格納する
-        for(int n=0;n<playerNum;n++){
+    private void createPlayer(int playerNum){//プレイヤーのインスタンスをプレイヤー数生成し、playersに格納する
+        for(int n = 0; n < playerNum; n++){
             Player player = new Player();
             players.add(player);
         }
     }
     
-    private void cardDistribute(){//各プレイヤーにカードを配布する
+    private void cardDistribute(int playerNum){//各プレイヤーにカードを配布する
         int onePlayerCard = 52/playerNum;//一人当たりの手札の枚数
         int surplusCard = 52%playerNum;//余りのカード
-       
-        for(int n=0;n<playerNum;n++){
-            for(int i=n*onePlayerCard;i<(n+1)*onePlayerCard;i++){//0~12、13~25、26~38、39~51
-                onePlayerCardList.set(i,initCards);
-                players.get(n).setCardData(onePlayerCardList.get(n));
+        for(int n = 0; n < playerNum; n++){
+            Card[] cards = new Card[onePlayerCard];
+            for(int i = 0; i < onePlayerCard; i++){//0~12、13~25、26~38、39~51
+                cards[i] = initCards[i + onePlayerCard * n];
             }
+            onePlayerCardList.add(cards);
+            players.get(n).setCardData(onePlayerCardList.get(n));
         }
     }
     
     private void cardShuffle(){//randomを用いてcardをシャッフルする
-        int SHUFFLE_LENGTH = 52;
-        int i = SHUFFLE_LENGTH;
-        do{
-            int j= (int)Math.random()*(i+1);
-            Card tmp = initCards[i];
-            initCards[i] = initCards[j];
-            initCards[j] = tmp;
-            i++;
-        }while(i>0);
+        Random rand = new Random();
+        for (int i = initCards.length - 1; i > 0; i--) {
+            int index = rand.nextInt(i + 1);
+            Card tmp = initCards[index];
+            initCards[index] = initCards[i];
+            initCards[i] = tmp;
+        }
+//        for (int j = 0; j < 52; j++) {
+//            System.out.println(j + ": " + initCards[j]);
+//        }
     }
 //--------------------------↓ダウト選択--------------------------------------------------------------
     

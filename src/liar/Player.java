@@ -6,6 +6,7 @@
 package liar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import javafx.scene.image.ImageView;
 /**
  *
@@ -13,7 +14,7 @@ import javafx.scene.image.ImageView;
  */
 public class Player {
     ImageView[] iconimage;
-    ArrayList<Card> cardData;
+    ArrayList<Card> cardData = new ArrayList<Card>();
     
     public void deleteCardData(Card[] cards){
         for(int n=0;n<cards.length;n++){
