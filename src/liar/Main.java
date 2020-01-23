@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author f1610801320
+ * @author f1712290040
  */
 public class Main extends Application {
     
@@ -41,8 +41,10 @@ public class Main extends Application {
         primaryStage.setHeight(600);
         SceneControl sceneControl = new SceneControl(primaryStage, secondaryStage);
         
-        primaryStage.setScene(SceneControl.gameStartScene);
-        secondaryStage.setScene(SceneControl.doubtPlayerCheckScene);
+      //   primaryStage.setScene(SceneControl.gameStartScene);
+      //  primaryStage.setScene(SceneControl.playerDispScene);
+        primaryStage.setScene(SceneControl.doubtCheckScene);
+       // secondaryStage.setScene(SceneControl.doubtPlayerCheckScene);
         primaryStage.show();
     }
 

@@ -10,11 +10,14 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.shape.*;
+import javafx.animation.Timeline;
 
 /**
  *
- * @author f1610801320
+ * @author f1712290040
  */
 public class SceneControl extends GUIParts{
     private InputControl input;
@@ -29,9 +32,9 @@ public class SceneControl extends GUIParts{
         
 //        setGameEndScene(primaryStage);
         setGameStartScene(primaryStage);
-//        setPlayerDispScene(primaryStage);
+        setPlayerDispScene(primaryStage);
         setCardChoiseScene(primaryStage);
-//        setDoubtCheckScene(primaryStage);
+        setDoubtCheckScene(primaryStage);
         setDoubtPlayerCheckScene(secondaryStage);
 //        setDoubtResultScene(primaryStage);
 //        transitionScene(primaryStage, gameStartScene);
@@ -68,7 +71,26 @@ public class SceneControl extends GUIParts{
     }
     
     private void setPlayerDispScene(Stage primaryStage) {
+        StackPane pane = new StackPane();
+        pane.setStyle("-fx-background-color: #FFFFFF;");
+        startButton.setTranslateY(100);
+        startButton.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                transitionScene(primaryStage, cardChoiseScene);
+            }
+        });
+        currentPlayerView.setTranslateX(-150);
+        currentPlayerView.setTranslateY(-200);
+        currentPlayerView.setScaleX(0.8);
+        currentPlayerView.setScaleY(0.8);
+        nextPlayerLabel.setTranslateX(-140);
+        nextPlayerLabel.setTranslateY(-200);
+        pane.getChildren().addAll(startButton,currentPlayerView,nextPlayerLabel);
         
+        Scene scene = new Scene(pane, 300, 250);
+        playerDispScene = scene;
     }
     
     private void setCardChoiseScene(Stage primaryStage) {
@@ -89,21 +111,41 @@ public class SceneControl extends GUIParts{
     }
     
     private void setDoubtCheckScene(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setOnAction(new EventHandler<ActionEvent>() {
+        StackPane pane = new StackPane();
+        pane.setStyle("-fx-background-color: #FFFFFF;");
+        daubtButton.setTranslateY(200);
+        daubtButton.setScaleX(0.5);
+        daubtButton.setScaleY(0.5);
+        daubtButton.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("ゲーム開始");
+                transitionScene(primaryStage, cardChoiseScene);
             }
         });
+        doubtPlayerView.setTranslateX(-300);
+        doubtPlayerView.setTranslateY(-200);
+        doubtPlayerView.setScaleX(0.5);
+        doubtPlayerView.setScaleY(0.5);
+        handCardLabel.setTranslateX(-300);
+        handCardLabel.setTranslateY(-250);
+        numberOfCardLabel.setTranslateX(270);
+        numberOfCardLabel.setTranslateY(-220);
         
-        StackPane pane = new StackPane();
-        pane.getChildren().add(btn);
+        Circle TimerCircle = new Circle();
+        
+        TimerCircle.setTranslateY(-30);
+        TimerCircle.setRadius(130.0f);
+        TimerCircle.setStroke(Color.rgb(251,89,74,1));
+        TimerCircle.setFill(null);
+        
+        timerLabel.setTranslateY(-10);
+        
+        pane.getChildren().addAll(daubtButton,doubtPlayerView,handCardLabel,numberOfCardLabel,timerLabel,TimerCircle);
         
         Scene scene = new Scene(pane, 300, 250);
         doubtCheckScene = scene;
-    }
+         }
     
     private void setDoubtPlayerCheckScene(Stage secondaryStage) {
                 Button btn = new Button();

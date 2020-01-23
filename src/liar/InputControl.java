@@ -7,7 +7,7 @@ package liar;
 
 /**
  *
- * @author f1610801320
+ * @author f1712290040
  */
 import javafx.application.Application;
 import javafx.stage.Stage;

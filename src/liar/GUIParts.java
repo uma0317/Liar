@@ -19,7 +19,7 @@ import javafx.scene.text.Font;
 
 /**
  *
- * @author f1610801320
+ * @author f1712290040
  */
 public class GUIParts {
     Image[][] iconImage;
@@ -38,18 +38,25 @@ public class GUIParts {
     ImageView finalResultImageRightView, finalResultImageLeftView;
     Label finalResultTitleLabel;
     
+    //プレイヤー確認
+    Image DaubtButtonImage;
+    Button startButton;
+    Label nextPlayerLabel;
+    
+    
     //カード選択
     Image fieldCardsFrameImage;
     ImageView currentPlayerView, fieldCardsFrameImageView;
-    Button startButton, desicionButton;
+    Button  desicionButton;
     ArrayList<ComboBox<Integer>> cardDropDownForm;
     Label fieldCardLabel, themeCardLabel;
     Label[] patternLabel, currentNumberOfCardList;
     
     //ダウト確認
+    Button daubtButton;
     Image themeFrameImage, doubtButtonImage;
-    ImageView doubtPlayerView, themeFrameImageView;
-    Label timerLabel, numberOfCardLabel;
+    ImageView doubtPlayerView, themeFrameImageView;//doubtPlayerView->afraid-icon.png
+    Label timerLabel, numberOfCardLabel,handCardLabel;
     
     //ダウト結果
     Label doubtTitleLabel, doubtResultLabel, messageLabel;
@@ -57,7 +64,15 @@ public class GUIParts {
     protected void initButton() {
         gameStartBtn = new Button("ゲーム開始");
         gameStartBtn.setStyle("-fx-background-color: #f08084; -fx-text-fill: #FFFFFF");
-
+        
+        startButton = new Button("はじめる");
+        startButton.setStyle("-fx-background-color: #fb594a; -fx-text-fill: #FFFFFF;-fx-pref-height: 6.0em;-fx-pref-width: 6.0em;-fx-background-radius: 16.0em;-fx-border-radius: 16.0em;");
+        startButton.setFont( new Font(30));
+        
+        DaubtButtonImage = new Image("file:C:\\Users\\f1712290040\\Documents\\GitHub\\Liar\\src\\resources\\doubtButton.png");
+        daubtButton = new Button(" ");
+        daubtButton.setGraphic(new ImageView(DaubtButtonImage));
+        
     }
     
     protected void initComboBox() {
@@ -70,6 +85,11 @@ public class GUIParts {
     }
     
     protected void initImageView() {
+        Image image1 = new Image("file:C:\\Users\\f1712290040\\Documents\\GitHub\\Liar\\src\\resources\\Player\\player7\\normal-icon.png" );
+        currentPlayerView = new ImageView(image1);
+         Image image2 = new Image("file:C:\\Users\\f1712290040\\Documents\\GitHub\\Liar\\src\\resources\\Player\\player7\\normal-icon.png" );
+        doubtPlayerView= new ImageView(image2);
+     
         
     }
     
@@ -80,6 +100,18 @@ public class GUIParts {
 
         subTitleLabel = new Label("-ライアーゲーム予選-");
         subTitleLabel.setFont(new Font(20));
+        
+        nextPlayerLabel = new Label("次は　　　　　　の番だ");
+        nextPlayerLabel.setFont(new Font(40));
+        
+        handCardLabel = new Label("残りカード枚数:"+"16");
+        handCardLabel.setFont(new Font(20));
+        
+        numberOfCardLabel = new Label("出されたカードは "+"\n\t"+"K");
+        numberOfCardLabel.setFont(new Font(30));
+        
+        timerLabel = new Label("null");
+       
     }
     
     protected void GUIParts() {
@@ -90,8 +122,10 @@ public class GUIParts {
         
     }
     
-    protected static void setTimerLable(int time) {
-        
+    protected  void setTimerLable(int time) {
+         
+         timerLabel = new Label(""+time);
+         timerLabel.setFont(new Font(20));
     }
     
     protected static void setFieldCardLabel(int num) {
