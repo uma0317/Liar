@@ -4,11 +4,18 @@
  * and open the template in the editor.
  */
 package liar;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
 
 /**
  *
- * @author f1712290040
+ * @author f1610801320
  */
 public class CountDown {
-    
+    public CountDown() {
+        
+    }
+
+
 }
