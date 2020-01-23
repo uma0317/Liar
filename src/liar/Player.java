@@ -10,7 +10,7 @@ import java.util.Arrays;
 import javafx.scene.image.ImageView;
 /**
  *
- * @author f1610801320
+ * @author f1712290040
  */
 public class Player {
     ImageView[] iconimage;

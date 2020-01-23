@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package liar;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
@@ -17,5 +16,6 @@ public class CountDown {
     public CountDown() {
         
     }
+
 
 }
