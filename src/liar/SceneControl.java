@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -123,10 +125,6 @@ public class SceneControl extends GUIParts{
     }
     
     private void setDoubtResultScene(Stage primaryStage) {
-        InputControl CPlayer = new InputControl();
-        InputControl DPlayer = new InputControl();
-        Player CurrentPlayer = CPlayer.getCurrentPlayer();
-        Player DoubtPlayer = DPlayer.getDoubtPlayer();
         
         boolean judge = new InputControl().doubtCheck();
         int ThemeCard = new InputControl().getThemeCard();
@@ -134,10 +132,21 @@ public class SceneControl extends GUIParts{
         this.setDoubtTitleLabel(judge);
         this.setDoubtResultLabel(judge, ThemeCard, GarbageCard);
         this.setMessageLabel(judge);
+        this.setCPExpressionView(judge);
         
         StackPane pane = new StackPane();
         
         doubtTitleLabel.setTranslateY(-220);
         doubtResultLabel.setTranslateY(-180);
+        messageLabel.setTranslateX();
+        messageLabel.setTranslateY();
+        currentPlayerExpressionView.setX();
+        currentPlayerExpressionView.setY();
+        doubtPlayerView.setX();
+        doubtPlayerView.setY();
+        
+        pane.getChildren().addAll();
+        Scene scene = new Scene(pane, 300, 250);
+        doubtResultScene = scene;
     }
 }

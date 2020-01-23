@@ -53,6 +53,7 @@ public class GUIParts {
     Label timerLabel, numberOfCardLabel;
     
     //ダウト結果
+    ImageView currentPlayerExpressionView;
     Label doubtTitleLabel, doubtResultLabel, messageLabel;
     
     protected void initButton() {
@@ -127,6 +128,13 @@ public class GUIParts {
         }
     }
     
+    protected void setCPExpressionView(boolean judge){
+        if(judge == true){
+            
+        }else{
+            
+        }
+    }
     protected static void setCurrentNumberOfLabel(int cardDataNum) {
         
     }

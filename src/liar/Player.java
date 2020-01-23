@@ -6,6 +6,7 @@
 package liar;
 
 import java.util.ArrayList;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 /**
  *
@@ -38,7 +39,18 @@ public class Player {
     public ImageView getIconImage(int expression){
         return iconimage[expression];
     }
-    public void Player(String playerImage){
+    public void Player(int playerNum){//(String playerImage){
+        Image img0 = new Image("resources/Player/player" + (playerNum+1)+ "/afraid-icon.png" );
+        Image img1 = new Image("resources/Player/player" + (playerNum+1)+ "/doubt-icon.png" );
+        Image img2 = new Image("resources/Player/player" + (playerNum+1)+ "/normal-icon.png" );
+        Image img3 = new Image("resources/Player/player" + (playerNum+1)+ "/truth-icon.png" );
+        Image img4 = new Image("resources/Player/player" + (playerNum+1)+ "/win-icon.png" );
         
+        iconimage = new ImageView[5];
+        iconimage[0] = new ImageView(img0);
+        iconimage[1] = new ImageView(img1);
+        iconimage[2] = new ImageView(img2);
+        iconimage[3] = new ImageView(img3);
+        iconimage[4] = new ImageView(img4);
     }
 }
