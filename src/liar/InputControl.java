@@ -55,8 +55,7 @@ public class InputControl {
         cardShuffle();
         createPlayer(playerNum);
         cardDistribute(playerNum);
-        countThemeCard();
-        changeCurrentPlayer();
+
     }
             
     public Player getPlayer(int playerID){//プレイヤーIDを取得
@@ -96,10 +95,19 @@ public class InputControl {
         int divideCard[] = new int[13];
         int work = 0;
         ArrayList<Card> cardData = currentPlayer.getCardData();
-        for(int number = 0;number<divideCard.length;number++){
-            if((number+1)==cardData.get(work).getNumber())
-                divideCard[number]++;
+
+        
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < cardData.size(); j++) {
+                if((i + 1) == cardData.get(j).getNumber())
+                    divideCard[i]++;
+            }
         }
+        
+//        for(int number = 0; number < divideCard.length; number++){
+//            System.out.println((number+1) + ": " + cardData.get(number).getNumber());
+//        }
+//        System.out.println(Arrays.toString(divideCard));
         return divideCard;
     }
     
@@ -112,6 +120,7 @@ public class InputControl {
     public void changeCurrentPlayer(){//currentPlayerにplayersから現在のPlayerを取得し代入する
         count++;
         currentPlayer = players.get(count%playerNum);
+//        GUIParts.currentPlayerView = currentPlayer.getIconImage(playerNum);
     }
     //--------------------------↓カード配布---------------------------------------------------------
     
@@ -125,7 +134,6 @@ public class InputControl {
     private void cardDistribute(int playerNum){//各プレイヤーにカードを配布する
         int onePlayerCard = 52/playerNum;//一人当たりの手札の枚数
         int surplusCard = 52%playerNum;//余りのカード
-        System.out.println(playerNum);
         for(int n = 0; n < playerNum; n++){
             Card[] cards = new Card[onePlayerCard];
             for(int i = 0; i < onePlayerCard; i++){//0~12、13~25、26~38、39~51

@@ -5,10 +5,17 @@
  */
 package liar;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+
 /**
  *
  * @author f1610801320
  */
 public class CountDown {
-    
+    public CountDown() {
+        
+    }
+
 }

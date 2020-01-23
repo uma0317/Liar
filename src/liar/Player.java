@@ -29,8 +29,6 @@ public class Player {
             
     }
     public void setCardData(Card[] cards){
-        System.out.println(Arrays.toString(cards));
-
         for(int n=0;n<cards.length;n++){
             cardData.add(cards[n]);
         }
