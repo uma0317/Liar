@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 
 /**
  *
@@ -34,8 +35,8 @@ public class SceneControl extends GUIParts{
 //        setPlayerDispScene(primaryStage);
         setCardChoiseScene(primaryStage);
 //        setDoubtCheckScene(primaryStage);
-        setDoubtPlayerCheckScene(secondaryStage);
-//        setDoubtResultScene(primaryStage);
+//        setDoubtPlayerCheckScene(secondaryStage);
+        setDoubtResultScene(primaryStage);
 //        transitionScene(primaryStage, gameStartScene);
     }
     
@@ -136,16 +137,25 @@ public class SceneControl extends GUIParts{
         
         StackPane pane = new StackPane();
         
-        doubtTitleLabel.setTranslateY(-220);
-        doubtResultLabel.setTranslateY(-180);
-        messageLabel.setTranslateX();
-        messageLabel.setTranslateY();
-        currentPlayerExpressionView.setX();
-        currentPlayerExpressionView.setY();
-        doubtPlayerView.setX();
-        doubtPlayerView.setY();
+        doubtTitleLabel.setTranslateY(20);
+        doubtTitleLabel.setFont(new Font(20));
         
-        pane.getChildren().addAll();
+        doubtResultLabel.setTranslateY(40);
+        
+        messageLabel.setTranslateX(50);
+        messageLabel.setTranslateY(150);
+        messageLabel.setFont(new Font(20));
+        
+        currentPlayerExpressionView.setTranslateX(-25);
+        currentPlayerExpressionView.setTranslateY(150);
+        currentPlayerExpressionView.setScaleX(0.4);
+        currentPlayerExpressionView.setScaleY(0.4);
+        
+        doubtPlayerView.setTranslateY(80);
+        doubtPlayerView.setScaleX(0.4);
+        doubtPlayerView.setScaleY(0.4);
+        
+        pane.getChildren().addAll(doubtTitleLabel,doubtResultLabel,messageLabel,currentPlayerExpressionView,doubtPlayerView);
         Scene scene = new Scene(pane, 300, 250);
         doubtResultScene = scene;
     }

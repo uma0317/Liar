@@ -129,10 +129,11 @@ public class GUIParts {
     }
     
     protected void setCPExpressionView(boolean judge){
+        Player currentPlayer = new InputControl().getCurrentPlayer();
         if(judge == true){
-            
+            currentPlayerExpressionView = currentPlayer.getIconImage(1);
         }else{
-            
+            currentPlayerExpressionView = currentPlayer.getIconImage(3);
         }
     }
     protected static void setCurrentNumberOfLabel(int cardDataNum) {
