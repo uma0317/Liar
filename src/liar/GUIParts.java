@@ -6,7 +6,6 @@
 package liar;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -16,7 +15,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.util.Duration;
 
 /**
  *
@@ -48,16 +53,18 @@ public class GUIParts {
     //カード選択
     Image fieldCardsFrameImage;
     ImageView currentPlayerView, fieldCardsFrameImageView;
-    static Button startButton, desicionButton;
-    static ArrayList<ComboBox<Integer>> cardDropDownForm;
-    static Label fieldCardLabel, themeCardLabel;
+    Button  desicionButton;
+    ArrayList<ComboBox<Integer>> cardDropDownForm;
+    Label fieldCardLabel, themeCardLabel;
     Label[] patternLabel, currentNumberOfCardList;
     
     //ダウト確認
-    Button daubtButton;
-    Image themeFrameImage, doubtButtonImage;
+
+    Button daubtButton,passButton;
+    Image themeFrameImage, doubtButtonImage,passButtonImage;
     ImageView doubtPlayerView, themeFrameImageView;//doubtPlayerView->afraid-icon.png
-    static Label timerLabel, numberOfCardLabel, handCardLabel;
+    Label timerLabel, numberOfCardLabel,handCardLabel;
+    
     
     //ダウト結果
     Label doubtTitleLabel, doubtResultLabel, messageLabel;
@@ -66,7 +73,6 @@ public class GUIParts {
         gameStartBtn = new Button("ゲーム開始");
         gameStartBtn.setStyle("-fx-background-color: #f08084; -fx-text-fill: #FFFFFF");
         
-
         startButton = new Button("はじめる");
         startButton.setStyle("-fx-background-color: #fb594a; -fx-text-fill: #FFFFFF;-fx-pref-height: 6.0em;-fx-pref-width: 6.0em;-fx-background-radius: 16.0em;-fx-border-radius: 16.0em;");
         startButton.setFont( new Font(30));
@@ -75,20 +81,17 @@ public class GUIParts {
         daubtButton = new Button(" ");
         daubtButton.setGraphic(new ImageView(DaubtButtonImage));
         
-        desicionButton = new Button("決定");
-
+        passButtonImage = new Image("file:C:\\Users\\f1712290040\\Documents\\GitHub\\Liar\\src\\resources\\passButton.png");
+        passButton = new Button(" ");
+        passButton.setGraphic(new ImageView(passButtonImage));
+        
+        
+        
     }
     
     protected void initComboBox() {
         inputPlayerNumForm = new ComboBox<Integer>();
         inputPlayerNumForm.getItems().addAll(3, 4, 5, 6, 7, 8);
-        inputPlayerNumForm.setValue(3);
-        
-        //カード選択シーン
-        cardDropDownForm = new ArrayList<ComboBox<Integer>>();
-        for (int i = 0; i < 13; i++) {
-            cardDropDownForm.add(new ComboBox<Integer>());
-        }
     }
     
     protected void initImage() {
@@ -100,24 +103,33 @@ public class GUIParts {
         currentPlayerView = new ImageView(image1);
          Image image2 = new Image("file:C:\\Users\\f1712290040\\Documents\\GitHub\\Liar\\src\\resources\\Player\\player7\\normal-icon.png" );
         doubtPlayerView= new ImageView(image2);
-     
         
+        imageRight = new Image("file:C:\\Users\\f1712290040\\Documents\\GitHub\\Liar\\src\\resources\\Player\\Silhouette\\shilhouette1.png" );
+        imageRightView = new ImageView(imageRight);
+        
+        imageLeft = new Image("file:C:\\Users\\f1712290040\\Documents\\GitHub\\Liar\\src\\resources\\Player\\Silhouette\\shilhouette2.png" );
+        imageLeftView = new ImageView(imageLeft);
     }
     
     protected void initLabel() {
         playerFormMessageLabel = new Label("プレイヤー数");
         titleLabel = new Label("だうと");
-        titleLabel.setFont(new Font(40));
+        titleLabel.setFont(new Font(50));
 
         subTitleLabel = new Label("-ライアーゲーム予選-");
-        subTitleLabel.setFont(new Font(20));
+        subTitleLabel.setFont(new Font(30));
         
-        //カード選択シーン
-        fieldCardLabel = new Label();
-        themeCardLabel = new Label();
-
-        //ダウと確認
-        numberOfCardLabel = new Label();
+        nextPlayerLabel = new Label("次は　　　　　　の番だ");
+        nextPlayerLabel.setFont(new Font(40));
+        
+        handCardLabel = new Label("残りカード枚数:"+"16");
+        handCardLabel.setFont(new Font(20));
+        
+        numberOfCardLabel = new Label("出されたカードは "+"\n\t"+"K");
+        numberOfCardLabel.setFont(new Font(30));
+        
+       
+       
     }
     
     protected void GUIParts() {
@@ -125,35 +137,25 @@ public class GUIParts {
     }
     
     protected static void setCardDropDownForm(int[] divideCardData) {
-//        for (int i = 0; i < divideCardData.length; i++) {
-//            ComboBox<Integer> dropDown = new ComboBox<Integer>();
-//            for (int j = 0; j < divideCardData[i]; j++) {
-//                dropDown.getItems().add(j + 1);
-//            }
-//            cardDropDownForm.add(dropDown);
-//        }
-        for (int i = 0; i < divideCardData.length; i++) {
-            ComboBox<Integer> dropDown = cardDropDownForm.get(i);
-            
-            for (int j = 0; j <= divideCardData[i]; j++) {
-                dropDown.getItems().add(j);
-            }
-            dropDown.setValue(0);
-        }
+        
     }
     
     protected  void setTimerLable(int time) {
          
          timerLabel = new Label(""+time);
-         timerLabel.setFont(new Font(20));
+         timerLabel.setFont(new Font(80));
+         timerLabel.setTextFill(Color.rgb(251,89,74,1));
+         timerLabel.setTranslateY(-25);
     }
+    
+    
     
     protected static void setFieldCardLabel(int num) {
-        fieldCardLabel.setText(num + "枚");
+        
     }
     
-    protected static void setThemeCardLabel(int theme) {
-        themeCardLabel.setText("次出すのは " + theme);
+    protected static void setThemeLabel(int theme) {
+        
     }
     
     protected static void setDoubtTitleLabel(boolean judge) {
@@ -169,6 +171,6 @@ public class GUIParts {
     }
     
     protected static void setCurrentNumberOfLabel(int cardDataNum) {
-        numberOfCardLabel.setText("残りカード数: " + cardDataNum);
+        
     }
 }
