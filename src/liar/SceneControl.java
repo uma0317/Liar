@@ -36,7 +36,7 @@ public class SceneControl extends GUIParts{
         setCardChoiseScene(primaryStage);
 //        setDoubtCheckScene(primaryStage);
 //        setDoubtPlayerCheckScene(secondaryStage);
-        setDoubtResultScene(primaryStage);
+//       setDoubtResultScene(primaryStage);
 //        transitionScene(primaryStage, gameStartScene);
     }
     
@@ -127,9 +127,9 @@ public class SceneControl extends GUIParts{
     
     private void setDoubtResultScene(Stage primaryStage) {
         
-        boolean judge = new InputControl().doubtCheck();
-        int ThemeCard = new InputControl().getThemeCard();
-        int GarbageCard = new InputControl().getGarbageCard();
+        boolean judge = new InputControl().doubtCheck(); //test:true
+        int ThemeCard = new InputControl().getThemeCard(); //test:2
+        int GarbageCard = new InputControl().getGarbageCard(); //test:3
         this.setDoubtTitleLabel(judge);
         this.setDoubtResultLabel(judge, ThemeCard, GarbageCard);
         this.setMessageLabel(judge);

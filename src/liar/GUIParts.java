@@ -129,9 +129,10 @@ public class GUIParts {
     }
     
     protected void setCPExpressionView(boolean judge){
-        Player currentPlayer = new InputControl().getCurrentPlayer();
+       Player currentPlayer = new InputControl().getCurrentPlayer();
+       //test:Image img1 = new Image("resources/Player/player1/doubt-icon.png" ); 
         if(judge == true){
-            currentPlayerExpressionView = currentPlayer.getIconImage(1);
+            currentPlayerExpressionView = currentPlayer.getIconImage(1);//new ImageView(img1);
         }else{
             currentPlayerExpressionView = currentPlayer.getIconImage(3);
         }
