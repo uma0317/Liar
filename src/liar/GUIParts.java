@@ -15,7 +15,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.util.Duration;
 
 /**
  *
@@ -53,10 +59,12 @@ public class GUIParts {
     Label[] patternLabel, currentNumberOfCardList;
     
     //ダウト確認
-    Button daubtButton;
-    Image themeFrameImage, doubtButtonImage;
+
+    Button daubtButton,passButton;
+    Image themeFrameImage, doubtButtonImage,passButtonImage;
     ImageView doubtPlayerView, themeFrameImageView;//doubtPlayerView->afraid-icon.png
     Label timerLabel, numberOfCardLabel,handCardLabel;
+    
     
     //ダウト結果
     Label doubtTitleLabel, doubtResultLabel, messageLabel;
@@ -72,6 +80,12 @@ public class GUIParts {
         DaubtButtonImage = new Image("file:C:\\Users\\f1712290040\\Documents\\GitHub\\Liar\\src\\resources\\doubtButton.png");
         daubtButton = new Button(" ");
         daubtButton.setGraphic(new ImageView(DaubtButtonImage));
+        
+        passButtonImage = new Image("file:C:\\Users\\f1712290040\\Documents\\GitHub\\Liar\\src\\resources\\passButton.png");
+        passButton = new Button(" ");
+        passButton.setGraphic(new ImageView(passButtonImage));
+        
+        
         
     }
     
@@ -89,17 +103,21 @@ public class GUIParts {
         currentPlayerView = new ImageView(image1);
          Image image2 = new Image("file:C:\\Users\\f1712290040\\Documents\\GitHub\\Liar\\src\\resources\\Player\\player7\\normal-icon.png" );
         doubtPlayerView= new ImageView(image2);
-     
         
+        imageRight = new Image("file:C:\\Users\\f1712290040\\Documents\\GitHub\\Liar\\src\\resources\\Player\\Silhouette\\shilhouette1.png" );
+        imageRightView = new ImageView(imageRight);
+        
+        imageLeft = new Image("file:C:\\Users\\f1712290040\\Documents\\GitHub\\Liar\\src\\resources\\Player\\Silhouette\\shilhouette2.png" );
+        imageLeftView = new ImageView(imageLeft);
     }
     
     protected void initLabel() {
         playerFormMessageLabel = new Label("プレイヤー数");
         titleLabel = new Label("だうと");
-        titleLabel.setFont(new Font(40));
+        titleLabel.setFont(new Font(50));
 
         subTitleLabel = new Label("-ライアーゲーム予選-");
-        subTitleLabel.setFont(new Font(20));
+        subTitleLabel.setFont(new Font(30));
         
         nextPlayerLabel = new Label("次は　　　　　　の番だ");
         nextPlayerLabel.setFont(new Font(40));
@@ -110,7 +128,7 @@ public class GUIParts {
         numberOfCardLabel = new Label("出されたカードは "+"\n\t"+"K");
         numberOfCardLabel.setFont(new Font(30));
         
-        timerLabel = new Label("null");
+       
        
     }
     
@@ -125,8 +143,12 @@ public class GUIParts {
     protected  void setTimerLable(int time) {
          
          timerLabel = new Label(""+time);
-         timerLabel.setFont(new Font(20));
+         timerLabel.setFont(new Font(80));
+         timerLabel.setTextFill(Color.rgb(251,89,74,1));
+         timerLabel.setTranslateY(-25);
     }
+    
+    
     
     protected static void setFieldCardLabel(int num) {
         

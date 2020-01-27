@@ -49,10 +49,20 @@ public class SceneControl extends GUIParts{
         StackPane pane = new StackPane();
 
         titleLabel.setTranslateY(-220);
-        subTitleLabel.setTranslateY(-180);
+        subTitleLabel.setTranslateY(-170);
         playerFormMessageLabel.setTranslateX(-30);
         inputPlayerNumForm.setTranslateX(30);
         gameStartBtn.setTranslateY(150);
+        gameStartBtn.setScaleX(3);
+         gameStartBtn.setScaleY(3);
+         imageRightView.setTranslateX(250);
+         imageRightView.setTranslateY(0);
+         imageRightView.setScaleX(0.9);
+          imageRightView.setScaleY(0.9);
+         imageLeftView.setTranslateX(-250);
+         imageLeftView.setTranslateY(0);
+         imageLeftView.setScaleX(0.9);
+          imageLeftView.setScaleY(0.9);
         gameStartBtn.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
@@ -60,7 +70,7 @@ public class SceneControl extends GUIParts{
                 transitionScene(primaryStage, cardChoiseScene);
             }
         });
-        pane.getChildren().addAll(gameStartBtn, inputPlayerNumForm, playerFormMessageLabel, titleLabel, subTitleLabel);
+        pane.getChildren().addAll(gameStartBtn, inputPlayerNumForm, playerFormMessageLabel, titleLabel,subTitleLabel,imageRightView,imageLeftView);
         
         Scene scene = new Scene(pane, 300, 250);
         gameStartScene = scene;
@@ -113,7 +123,7 @@ public class SceneControl extends GUIParts{
     private void setDoubtCheckScene(Stage primaryStage) {
         StackPane pane = new StackPane();
         pane.setStyle("-fx-background-color: #FFFFFF;");
-        daubtButton.setTranslateY(200);
+        daubtButton.setTranslateY(0);
         daubtButton.setScaleX(0.5);
         daubtButton.setScaleY(0.5);
         daubtButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -132,20 +142,27 @@ public class SceneControl extends GUIParts{
         numberOfCardLabel.setTranslateX(270);
         numberOfCardLabel.setTranslateY(-220);
         
-        Circle TimerCircle = new Circle();
+        passButton. setTranslateY(150);
+        passButton.setScaleX(0.5);
+        passButton.setScaleY(0.5);
+       /* Circle TimerCircle = new Circle();
         
         TimerCircle.setTranslateY(-30);
         TimerCircle.setRadius(130.0f);
         TimerCircle.setStroke(Color.rgb(251,89,74,1));
         TimerCircle.setFill(null);
+         */pane.getChildren().addAll(daubtButton,passButton,doubtPlayerView,handCardLabel,numberOfCardLabel);
+       
+         
+             Scene scene = new Scene(pane, 300, 250);
+            doubtCheckScene = scene;
+           
+               
+               
+            
+            
         
-        timerLabel.setTranslateY(-10);
-        
-        pane.getChildren().addAll(daubtButton,doubtPlayerView,handCardLabel,numberOfCardLabel,timerLabel,TimerCircle);
-        
-        Scene scene = new Scene(pane, 300, 250);
-        doubtCheckScene = scene;
-         }
+    }
     
     private void setDoubtPlayerCheckScene(Stage secondaryStage) {
                 Button btn = new Button();
