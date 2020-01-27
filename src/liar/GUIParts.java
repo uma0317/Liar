@@ -22,6 +22,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
+import static javafx.scene.paint.Color.*;
 
 /**
  *
@@ -109,6 +110,12 @@ public class GUIParts {
         
         imageLeft = new Image("file:C:\\Users\\f1712290040\\Documents\\GitHub\\Liar\\src\\resources\\Player\\Silhouette\\shilhouette2.png" );
         imageLeftView = new ImageView(imageLeft);
+        
+        finalResultImageRight = new Image("file:C:\\Users\\f1712290040\\Documents\\GitHub\\Liar\\src\\resources\\ResultImageRight.png" );
+        finalResultImageLeft = new Image("file:C:\\Users\\f1712290040\\Documents\\GitHub\\Liar\\src\\resources\\ResultImageLeft.png" );
+        finalResultImageRightView = new ImageView(finalResultImageRight);
+        finalResultImageLeftView = new ImageView(finalResultImageLeft);
+    
     }
     
     protected void initLabel() {
@@ -128,7 +135,10 @@ public class GUIParts {
         numberOfCardLabel = new Label("出されたカードは "+"\n\t"+"K");
         numberOfCardLabel.setFont(new Font(30));
         
-       
+        finalResultTitleLabel = new Label("~Congratulations~");
+        finalResultTitleLabel.setFont(new Font(30));
+        finalResultTitleLabel.setTextFill(Color.GOLDENROD);
+        
        
     }
     

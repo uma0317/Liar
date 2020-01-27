@@ -30,7 +30,7 @@ public class SceneControl extends GUIParts{
         initLabel();
         initImageView();
         
-//        setGameEndScene(primaryStage);
+        setGameEndScene(primaryStage);
         setGameStartScene(primaryStage);
         setPlayerDispScene(primaryStage);
         setCardChoiseScene(primaryStage);
@@ -77,6 +77,24 @@ public class SceneControl extends GUIParts{
     }
     
     private void setGameEndScene(Stage primaryStage) {
+        StackPane pane = new StackPane();
+        pane.setStyle("-fx-background-color: #FFFFFF;");
+        finalResultImageRightView.setTranslateX(200);
+        finalResultImageRightView.setTranslateY(160);
+        finalResultImageRightView.setScaleX(1.2);
+        finalResultImageRightView.setScaleY(1.2);
+        finalResultImageLeftView.setTranslateX(-200);
+        finalResultImageLeftView.setTranslateY(150);
+        finalResultImageLeftView.setScaleX(0.8);
+        finalResultImageLeftView.setScaleY(0.8);
+        finalResultTitleLabel.setTranslateX(0);
+        finalResultTitleLabel.setTranslateY(-200);
+        
+        pane.getChildren().addAll(finalResultTitleLabel,finalResultImageRightView,finalResultImageLeftView);
+        
+        Scene scene = new Scene(pane, 300, 250);
+        gameEndScene = scene;
+        System.out.println("test");
         
     }
     
